@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Izb-7O-g1T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T24-Iz-Lij">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -76,6 +76,7 @@
                                             <outlet property="cellImage" destination="UHT-CC-7rY" id="m9i-Vu-M30"/>
                                             <outlet property="dateLabel" destination="zZ7-qv-kLf" id="v4s-uC-ojU"/>
                                             <outlet property="likeButton" destination="sdE-8c-JJO" id="qI9-Lz-Dgp"/>
+                                            <segue destination="Izb-7O-g1T" kind="show" id="Ejt-tr-cxb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -207,7 +208,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="6em-As-Tkx">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="721"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sj6-cP-SOx"/>
@@ -219,6 +220,7 @@
                             <constraint firstItem="6em-As-Tkx" firstAttribute="leading" secondItem="sj6-cP-SOx" secondAttribute="leading" id="wBD-J1-XcW"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="jPY-lV-0le"/>
                     <connections>
                         <outlet property="imageView" destination="6em-As-Tkx" id="m37-UN-zfg"/>
                     </connections>
