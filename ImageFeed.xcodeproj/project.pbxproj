@@ -19,6 +19,7 @@
 		00998C172AB9B388009B6552 /* YS Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00998C142AB9B388009B6552 /* YS Regular.ttf */; };
 		00998C182AB9B388009B6552 /* YS Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00998C152AB9B388009B6552 /* YS Display-Bold.ttf */; };
 		00998C192AB9B388009B6552 /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00998C162AB9B388009B6552 /* YS Display-Medium.ttf */; };
+		009F81AE2AC85FCF00FC30C2 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009F81AD2AC85FCF00FC30C2 /* UIColor+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		00998C142AB9B388009B6552 /* YS Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Regular.ttf"; sourceTree = "<group>"; };
 		00998C152AB9B388009B6552 /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
 		00998C162AB9B388009B6552 /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
+		009F81AD2AC85FCF00FC30C2 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,8 @@
 		00998BF32AB8F6D7009B6552 /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				009F81AF2AC8620000FC30C2 /* SingleImage */,
+				009F81AC2AC85FB900FC30C2 /* Helpers */,
 				00786C832AC2DAC8000A3F14 /* Profile */,
 				00998BF42AB8F6D7009B6552 /* AppDelegate.swift */,
 				00998BF62AB8F6D7009B6552 /* SceneDelegate.swift */,
@@ -85,7 +89,6 @@
 				00998BFD2AB8F6DB009B6552 /* Assets.xcassets */,
 				00998C022AB8F6DB009B6552 /* Info.plist */,
 				00998C132AB9B388009B6552 /* Fonts */,
-				00786C872AC30599000A3F14 /* SingleImageViewController.swift */,
 			);
 			path = ImageFeed;
 			sourceTree = "<group>";
@@ -107,6 +110,22 @@
 				00998C162AB9B388009B6552 /* YS Display-Medium.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		009F81AC2AC85FB900FC30C2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				009F81AD2AC85FCF00FC30C2 /* UIColor+Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		009F81AF2AC8620000FC30C2 /* SingleImage */ = {
+			isa = PBXGroup;
+			children = (
+				00786C872AC30599000A3F14 /* SingleImageViewController.swift */,
+			);
+			path = SingleImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +206,7 @@
 				00998C102AB8F7B9009B6552 /* ImagesListCell.swift in Sources */,
 				00998C122AB9A8CA009B6552 /* ProfileViewController.swift in Sources */,
 				00998BF52AB8F6D7009B6552 /* AppDelegate.swift in Sources */,
+				009F81AE2AC85FCF00FC30C2 /* UIColor+Extensions.swift in Sources */,
 				00786C882AC30599000A3F14 /* SingleImageViewController.swift in Sources */,
 				00998BF72AB8F6D7009B6552 /* SceneDelegate.swift in Sources */,
 			);
