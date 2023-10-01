@@ -3,12 +3,49 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    private var nameLabel: UILabel!
-    private var nickLabel: UILabel!
-    private var profileDescription: UILabel!
+    private var nameLabel = {
+        let nameLabel = UILabel()
+        nameLabel.text = "Екатерина Новикова"
+        nameLabel.textColor = .ypWhite
+        nameLabel.font = .boldSystemFont(ofSize: 23)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        return nameLabel
+    }()
     
-    private var profileImageView: UIImageView!
-    private var logOutButton: UIButton!
+    private var nickLabel = {
+        let nickLabel = UILabel()
+        nickLabel.text = "@ekaterina_nov"
+        nickLabel.textColor = .gray
+        nickLabel.font = .boldSystemFont(ofSize: 13)
+        nickLabel.translatesAutoresizingMaskIntoConstraints = false
+        return nickLabel
+    }()
+    
+    private var profileDescription = {
+        let profileDescription = UILabel()
+        profileDescription.text = "Hello, world!"
+        profileDescription.textColor = .white
+        profileDescription.font = .boldSystemFont(ofSize: 13)
+        profileDescription.translatesAutoresizingMaskIntoConstraints = false
+        return profileDescription
+    }()
+    
+    private var profileImageView = {
+        let profileImageView = UIImageView(image: UIImage(named: "avatar"))
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        return profileImageView
+    }()
+    
+    private var logOutButton = {
+        let logOutButton = UIButton.systemButton(
+            with: UIImage(named: "Exit_button")!,
+            target: ProfileViewController.self,
+            action: #selector(Self.didTapButton)
+        )
+        logOutButton.tintColor = .ypRed
+        logOutButton.translatesAutoresizingMaskIntoConstraints = false
+        return logOutButton
+    }()
     
     
     override func viewDidLoad() {
@@ -27,85 +64,53 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setProfileImage() {
-        let profileImageView = UIImageView(image: UIImage(named: "avatar"))
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)
         profileImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        self.profileImageView = profileImageView
     }
     
     private func setNamelabel() {
-        let nameLabel = UILabel()
-        nameLabel.text = "Екатерина Новикова"
-        nameLabel.textColor = .white
-        nameLabel.font = .boldSystemFont(ofSize: 23)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(nameLabel)
         nameLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        self.nameLabel = nameLabel
     }
     
     private func setNickName() {
-        let nickLabel = UILabel()
-        nickLabel.text = "@ekaterina_nov"
-        nickLabel.textColor = .gray
-        nickLabel.font = .boldSystemFont(ofSize: 13)
-        nickLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(nickLabel)
         nickLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
         nickLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
         nickLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        self.nickLabel = nickLabel
     }
     
     private func setDescription() {
-        let description = UILabel()
-        description.text = "Hello, world!"
-        description.textColor = .white
-        description.font = .boldSystemFont(ofSize: 13)
-        description.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(description)
-        description.leadingAnchor.constraint(equalTo: nickLabel.leadingAnchor).isActive = true
-        description.topAnchor.constraint(equalTo: nickLabel.bottomAnchor, constant: 8).isActive = true
-        description.numberOfLines = 0
-        description.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        self.profileDescription = description
+        view.addSubview(profileDescription)
+        profileDescription.leadingAnchor.constraint(equalTo: nickLabel.leadingAnchor).isActive = true
+        profileDescription.topAnchor.constraint(equalTo: nickLabel.bottomAnchor, constant: 8).isActive = true
+        profileDescription.numberOfLines = 0
+        profileDescription.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
     }
     
     private func setLogOutButton() {
-        let button = UIButton.systemButton(
-            with: UIImage(named: "Exit_button")!,
-            target: self,
-            action: #selector(Self.didTapButton)
-        )
-        button.tintColor = .ypRed
-        button.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(button)
-        button.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24).isActive = true
-        button.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-        self.logOutButton = button
+        view.addSubview(logOutButton)
+        logOutButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        logOutButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        logOutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        logOutButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
     }
     
     @objc private func didTapButton() {
         
-        nameLabel?.removeFromSuperview()
-        nameLabel = nil
+        nameLabel.removeFromSuperview()
         
-        nickLabel?.removeFromSuperview()
-        nickLabel = nil
+        nickLabel.removeFromSuperview()
         
-        profileDescription?.removeFromSuperview()
-        profileDescription = nil
+        profileDescription.removeFromSuperview()
         
-        profileImageView?.image = UIImage(systemName: "person.crop.circle.fill")
-        profileImageView?.tintColor = .gray
+        profileImageView.image = UIImage(systemName: "person.crop.circle.fill")
+        profileImageView.tintColor = .gray
     }
     
     
