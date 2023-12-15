@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -244,6 +245,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="arP-2T-YFa" kind="presentation" identifier="ShowWebView" modalPresentationStyle="overFullScreen" id="y4F-Ob-aHb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VH5-ap-JMU"/>
@@ -261,6 +265,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHR-hd-mzM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1698.5507246376812" y="825.66964285714278"/>
+        </scene>
+        <!--Web View View Controller-->
+        <scene sceneID="5Ov-vB-4un">
+            <objects>
+                <viewController id="arP-2T-YFa" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZUT-4N-NSd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zR5-el-6Id">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.69803921568627447" colorSpace="calibratedRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRl-3z-0ao">
+                                <rect key="frame" x="0.0" y="0.0" width="64" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="mCT-oq-5m9"/>
+                                    <constraint firstAttribute="height" constant="44" id="sNZ-zk-xIn"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="nav_back_button"/>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="arP-2T-YFa" eventType="touchUpInside" id="DhB-Xm-9uZ"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JFQ-dg-YRv">
+                                <rect key="frame" x="0.0" y="40" width="414" height="4"/>
+                                <color key="tintColor" red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="0.69803921568627447" colorSpace="calibratedRGB"/>
+                            </progressView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Gpi-7c-8fm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RRl-3z-0ao" firstAttribute="leading" secondItem="Gpi-7c-8fm" secondAttribute="leading" id="XJC-ci-VuU"/>
+                            <constraint firstItem="RRl-3z-0ao" firstAttribute="top" secondItem="Gpi-7c-8fm" secondAttribute="top" id="XKZ-1l-4u1"/>
+                            <constraint firstItem="zR5-el-6Id" firstAttribute="leading" secondItem="Gpi-7c-8fm" secondAttribute="leading" id="Z93-w4-niO"/>
+                            <constraint firstItem="zR5-el-6Id" firstAttribute="bottom" secondItem="Gpi-7c-8fm" secondAttribute="bottom" id="aif-KQ-8Nz"/>
+                            <constraint firstItem="JFQ-dg-YRv" firstAttribute="leading" secondItem="Gpi-7c-8fm" secondAttribute="leading" id="cjd-rc-zwm"/>
+                            <constraint firstItem="zR5-el-6Id" firstAttribute="trailing" secondItem="Gpi-7c-8fm" secondAttribute="trailing" id="e3j-Cl-mP0"/>
+                            <constraint firstItem="JFQ-dg-YRv" firstAttribute="top" secondItem="Gpi-7c-8fm" secondAttribute="top" constant="40" id="jof-ji-qKY"/>
+                            <constraint firstItem="JFQ-dg-YRv" firstAttribute="trailing" secondItem="Gpi-7c-8fm" secondAttribute="trailing" id="rLT-do-eY8"/>
+                            <constraint firstItem="zR5-el-6Id" firstAttribute="top" secondItem="Gpi-7c-8fm" secondAttribute="top" id="w8g-ua-Ipc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rsJ-Tn-7gr"/>
+                    <connections>
+                        <outlet property="progressView" destination="JFQ-dg-YRv" id="EEv-qf-SjU"/>
+                        <outlet property="webView" destination="zR5-el-6Id" id="pls-gM-wZI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zCa-6u-lXJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2734.7826086956525" y="825.66964285714278"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1ND-sX-7VB">
@@ -287,6 +349,7 @@
         <image name="auth_screen_logo" width="60" height="60"/>
         <image name="backward" width="9" height="16"/>
         <image name="like_button_on" width="42" height="42"/>
+        <image name="nav_back_button" width="24" height="24"/>
         <image name="share_button" width="31" height="30"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <image name="tab_profile_active" width="30" height="30"/>
@@ -296,5 +359,8 @@
         <namedColor name="YP White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
