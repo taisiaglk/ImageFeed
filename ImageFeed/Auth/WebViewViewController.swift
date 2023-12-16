@@ -18,9 +18,8 @@ protocol WebViewViewControllerDelegate: AnyObject {
 
 final class WebViewViewController: UIViewController {
     @IBOutlet private var webView: WKWebView!
+    @IBOutlet private var progressView: UIProgressView!
     
-    
-    @IBOutlet weak var progressView: UIProgressView!
     weak var delegate: WebViewViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -39,11 +38,14 @@ final class WebViewViewController: UIViewController {
         
         let request = URLRequest(url: url)
         webView.load(request)
+        
+        updateProgress()
     }
     
-    @IBAction private func didTapBackButton(_ sender: UIButton) {
+    @IBAction private func didTapBackButton(_ sender: Any?) {
         delegate?.webViewViewControllerDidCancel(self)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // NOTE: Since the class is marked as `final` we don't need to pass a context.
@@ -55,6 +57,7 @@ final class WebViewViewController: UIViewController {
             context: nil)
         updateProgress()
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
@@ -89,7 +92,8 @@ extension WebViewViewController: WKNavigationDelegate {
     }
     
     private func code(from navigationAction: WKNavigationAction) -> String? {
-        if let url = navigationAction.request.url,
+        if
+            let url = navigationAction.request.url,
             let urlComponents = URLComponents(string: url.absoluteString),
             urlComponents.path == "/oauth/authorize/native",
             let items = urlComponents.queryItems,
