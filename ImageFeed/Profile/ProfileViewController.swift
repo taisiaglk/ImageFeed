@@ -3,9 +3,12 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
+    private let profileService = ProfileService.shared
+    
+    
     private var nameLabel = {
         let nameLabel = UILabel()
-        nameLabel.text = "Екатерина Новикова"
+        //nameLabel.text = "Екатерина Новикова"
         nameLabel.textColor = .ypWhite
         nameLabel.font = .boldSystemFont(ofSize: 23)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -14,7 +17,7 @@ final class ProfileViewController: UIViewController {
     
     private var nickLabel = {
         let nickLabel = UILabel()
-        nickLabel.text = "@ekaterina_nov"
+        //nickLabel.text = "@ekaterina_nov"
         nickLabel.textColor = .gray
         nickLabel.font = .boldSystemFont(ofSize: 13)
         nickLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +26,7 @@ final class ProfileViewController: UIViewController {
     
     private var profileDescription = {
         let profileDescription = UILabel()
-        profileDescription.text = "Hello, world!"
+        //profileDescription.text = "Hello, world!"
         profileDescription.textColor = .white
         profileDescription.font = .boldSystemFont(ofSize: 13)
         profileDescription.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +59,7 @@ final class ProfileViewController: UIViewController {
         setNickName()
         setDescription()
         setLogOutButton()
-        
+        updateProfileDetails()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -113,5 +116,15 @@ final class ProfileViewController: UIViewController {
         profileImageView.tintColor = .gray
     }
     
-    
+    private func updateProfileDetails() {
+        guard let profile = profileService.profile else { return }
+        nameLabel.text = profile.name
+        nickLabel.text = profile.name
+        profileDescription.text = profile.bio
+    } 
 }
+
+
+    
+     
+
