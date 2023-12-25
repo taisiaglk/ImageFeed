@@ -43,11 +43,8 @@ final class ProfileViewController: UIViewController {
     }()
     
     private var logOutButton = {
-        let logOutButton = UIButton.systemButton(
-            with: UIImage(named: "Exit_button")!,
-            target: ProfileViewController.self,
-            action: #selector(Self.didTapButton)
-        )
+        let logOutButton = UIButton()
+        logOutButton.setImage(UIImage(named: "Exit_button"), for: .normal)
         logOutButton.tintColor = .ypRed
         logOutButton.translatesAutoresizingMaskIntoConstraints = false
         return logOutButton
@@ -109,17 +106,17 @@ final class ProfileViewController: UIViewController {
         logOutButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
     }
     
-    @objc private func didTapButton() {
-        
-        nameLabel.removeFromSuperview()
-        
-        nickLabel.removeFromSuperview()
-        
-        profileDescription.removeFromSuperview()
-        
-        profileImageView.image = UIImage(systemName: "person.crop.circle.fill")
-        profileImageView.tintColor = .gray
-    }
+//    @objc private func didTapButton() {
+//        
+//        nameLabel.removeFromSuperview()
+//        
+//        nickLabel.removeFromSuperview()
+//        
+//        profileDescription.removeFromSuperview()
+//        
+//        profileImageView.image = UIImage(systemName: "person.crop.circle.fill")
+//        profileImageView.tintColor = .gray
+//    }
     
     private func updateProfileDetails() {
         guard let profile = profileService.profile else { return }
