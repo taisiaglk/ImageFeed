@@ -1,9 +1,12 @@
 import Foundation
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
     private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
+    private var profileImageObserver: NSObjectProtocol?
     
     
     private var nameLabel = {
@@ -60,6 +63,8 @@ final class ProfileViewController: UIViewController {
         setDescription()
         setLogOutButton()
         updateProfileDetails()
+        updateAvatar()
+        observeProfileImage()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -121,10 +126,37 @@ final class ProfileViewController: UIViewController {
         nameLabel.text = profile.name
         nickLabel.text = profile.name
         profileDescription.text = profile.bio
-    } 
+    }
+    
+    private func updateAvatar() {
+        guard let profileImageURL = profileImageService.avatarURL,
+              let url = URL(string: profileImageURL)
+        else { return }
+        let processor = RoundCornerImageProcessor(cornerRadius: 70, backgroundColor: .clear)
+        profileImageView.kf.indicatorType = .activity
+        profileImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(named: "person.crop.circle.fill.png"),
+            options: [.processor(processor),
+                      .cacheSerializer(FormatIndicatedCacheSerializer.png)]
+        )
+        let cache = ImageCache.default
+        cache.clearMemoryCache()
+        cache.clearDiskCache()
+    }
+    
+    private func observeProfileImage() {
+        profileImageObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.DidChangeNotification,
+                object: nil,
+                queue: .main) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.updateAvatar()
+                }
+    }
 }
 
 
-    
-     
+
 
