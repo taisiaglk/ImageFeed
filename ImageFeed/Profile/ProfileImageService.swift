@@ -28,8 +28,8 @@ final class ProfileImageService {
             self.task = nil
             switch result {
             case .success(let userResult):
-                let smallProfileImage = userResult.profileImage.small
-                self.avatarURL = smallProfileImage
+                let largeProfileImage = userResult.profileImage.large
+                self.avatarURL = largeProfileImage
                 completion(.success(self.avatarURL!))
                 NotificationCenter.default
                     .post(
