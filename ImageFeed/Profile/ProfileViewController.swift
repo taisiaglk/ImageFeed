@@ -10,8 +10,7 @@ final class ProfileViewController: UIViewController {
     
     
     private var nameLabel = {
-        let nameLabel = UILabel()
-        //nameLabel.text = "Екатерина Новикова"
+        let nameLabel = UILabel() 
         nameLabel.textColor = .ypWhite
         nameLabel.font = .boldSystemFont(ofSize: 23)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +19,6 @@ final class ProfileViewController: UIViewController {
     
     private var nickLabel = {
         let nickLabel = UILabel()
-        //nickLabel.text = "@ekaterina_nov"
         nickLabel.textColor = .gray
         nickLabel.font = .boldSystemFont(ofSize: 13)
         nickLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +27,6 @@ final class ProfileViewController: UIViewController {
     
     private var profileDescription = {
         let profileDescription = UILabel()
-        //profileDescription.text = "Hello, world!"
         profileDescription.textColor = .white
         profileDescription.font = .boldSystemFont(ofSize: 13)
         profileDescription.translatesAutoresizingMaskIntoConstraints = false
@@ -106,18 +103,6 @@ final class ProfileViewController: UIViewController {
         logOutButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
     }
     
-//    @objc private func didTapButton() {
-//        
-//        nameLabel.removeFromSuperview()
-//        
-//        nickLabel.removeFromSuperview()
-//        
-//        profileDescription.removeFromSuperview()
-//        
-//        profileImageView.image = UIImage(systemName: "person.crop.circle.fill")
-//        profileImageView.tintColor = .gray
-//    }
-    
     private func updateProfileDetails() {
         guard let profile = profileService.profile else { return }
         nameLabel.text = profile.name
@@ -126,6 +111,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func updateAvatar() {
+        
         guard let profileImageURL = profileImageService.avatarURL,
               let url = URL(string: profileImageURL)
         else { return }
