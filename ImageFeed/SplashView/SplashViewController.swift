@@ -80,9 +80,9 @@ extension SplashViewController: AuthViewControllerDelegate {
                 self.fetchProfile(token: token)
             case .failure:
                 self.showAlert()
-                UIBlockingProgressHUD.dismiss()
                 break
             }
+            UIBlockingProgressHUD.dismiss()
         }
     }
     
@@ -96,9 +96,9 @@ extension SplashViewController: AuthViewControllerDelegate {
                 self.switchToTabBarController()
             case .failure:
                 self.showAlert()
-                UIBlockingProgressHUD.dismiss()
                 break
             }
+            UIBlockingProgressHUD.dismiss()
         }
     }
     
