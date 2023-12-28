@@ -7,9 +7,7 @@
 
 import Foundation
 
-let dateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = .long
-    dateFormatter.timeStyle = .none
+let dateFormatter: ISO8601DateFormatter = {
+    let dateFormatter = ISO8601DateFormatter()
     return dateFormatter
 }()

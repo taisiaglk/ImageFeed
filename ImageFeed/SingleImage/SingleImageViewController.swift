@@ -2,14 +2,7 @@ import Foundation
 import UIKit
 
 class SingleImageViewController: UIViewController {
-    var image: UIImage! {
-        didSet {
-            guard isViewLoaded else { return }
-            imageView.image = image
-            rescaleAndCenterImageInScrollView(image: image)
-            
-        }
-    }
+    var imageURL: URL?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -20,12 +13,25 @@ class SingleImageViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = image
+        putImage()
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
-        rescaleAndCenterImageInScrollView(image: image)
         
     }
+    
+    private func putImage() {
+           UIBlockingProgressHUD.show()
+           imageView.kf.setImage(with: imageURL) { [weak self] result in
+               guard let self = self else { return }
+               switch result {
+               case .success(let imageResult):
+                   self.rescaleAndCenterImageInScrollView(image: imageResult.image)
+               case .failure(let error):
+                   assertionFailure("Failed \(error)")
+               }
+               UIBlockingProgressHUD.dismiss()
+           }
+       }
     
     @IBAction func didTapBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -33,10 +39,8 @@ class SingleImageViewController: UIViewController {
     
     
     @IBAction func didTapShareButton(_ sender: UIButton) {
-        let share = UIActivityViewController(
-            activityItems: [image],
-            applicationActivities: nil
-        )
+        guard let image = imageView.image else { return }
+        let share = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
         present(share, animated: true, completion: nil)
     }
     
