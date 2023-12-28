@@ -7,10 +7,11 @@ final class ProfileViewController: UIViewController {
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
     private var profileImageObserver: NSObjectProtocol?
-    
+    private let imagesListService = ImagesListService.shared
+    private let token = OAuth2TokenStorage()
     
     private var nameLabel = {
-        let nameLabel = UILabel() 
+        let nameLabel = UILabel()
         nameLabel.textColor = .ypWhite
         nameLabel.font = .boldSystemFont(ofSize: 23)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +102,8 @@ final class ProfileViewController: UIViewController {
         logOutButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         logOutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         logOutButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
+        logOutButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+        
     }
     
     private func updateProfileDetails() {
@@ -138,6 +141,38 @@ final class ProfileViewController: UIViewController {
                     self.updateAvatar()
                 }
     }
+    
+    
+    private func cleanAndSwitchToSplashView() {
+        WebViewViewController.clean()
+        profileImageService.clean()
+        profileService.clean()
+        imagesListService.clean()
+        token.clean()
+        
+        guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
+        window.rootViewController = SplashViewController()
+    }
+    
+    @objc
+    private func showAlert() {
+        let alertModel = AlertModel(
+            title: "Пока, пока!",
+            message: "Уверены что хотите выйти?",
+            firstButtonText: "ДА",
+            secondButtonText: "НЕТ",
+            firstButtonAction: { [weak self] in
+                guard let self = self else { return }
+                self.cleanAndSwitchToSplashView()
+            },
+            secondButtonAction: { [weak self] in
+                guard let self = self else { return }
+            }
+        )
+        AlertPresenter.showAlert(alertModel: alertModel, delegate: self)
+    }
+    
+    
 }
 
 

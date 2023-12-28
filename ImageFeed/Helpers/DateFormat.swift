@@ -7,7 +7,8 @@
 
 import Foundation
 
-let dateFormatter: ISO8601DateFormatter = {
-    let dateFormatter = ISO8601DateFormatter()
+let dateFormat: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "d MMMM yyyy"
     return dateFormatter
 }()

@@ -18,10 +18,18 @@ final class AlertPresenter {
         
         alert.view.accessibilityIdentifier = "Alert"
         
-        let action = UIAlertAction(title: alertModel.buttonText, style: .default) { _ in
-            alertModel.buttonAction()
+        let firstAction = UIAlertAction(title: alertModel.firstButtonText, style: .default) { _ in
+            alertModel.firstButtonAction?()
         }
-        alert.addAction(action)
+        alert.addAction(firstAction)
+        
+        if let secondButtonText = alertModel.secondButtonText {
+            let secondAction = UIAlertAction(title: secondButtonText, style: .cancel) { _ in
+                alertModel.secondButtonAction?()
+            }
+            alert.addAction(secondAction)
+        }
+        
         delegate.present(alert, animated: true, completion: nil)
     }
 }

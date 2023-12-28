@@ -24,9 +24,6 @@ class ImagesListViewController: UIViewController{
         }
         imagesListService.fetchPhotosNextPage()
     }
-    private func updateImage() {
-        
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showSingleImageSegueIdentifier {
@@ -55,15 +52,16 @@ extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
-        guard let imageListCell = cell as? ImagesListCell else {
+        guard let ImagesListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
-        imageListCell.delegate = self
-        configCell(for: imageListCell, with: indexPath)
-        
-        return imageListCell
+        ImagesListCell.delegate = self
+        configCell(for: ImagesListCell, with: indexPath)
+        return ImagesListCell
     }
 }
+
+
 
 extension ImagesListViewController {
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
@@ -77,7 +75,7 @@ extension ImagesListViewController {
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 }
             if let date = imagesListService.photos[indexPath.row].createdAt {
-                cell.dateLabel.text = dateFormatter.string(from: date as Date)
+                cell.dateLabel.text = dateFormat.string(from: date as Date)
             } else {
                 cell.dateLabel.text = ""
             }
@@ -100,8 +98,6 @@ extension ImagesListViewController {
             } completion: { _ in }
         }
     }
-    
-    
 }
 
 extension ImagesListViewController: UITableViewDelegate {
@@ -111,11 +107,13 @@ extension ImagesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let image = imagesListService.photos[indexPath.row]
-        let imageInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
-        let imageViewWidth = tableView.bounds.width - imageInsets.left - imageInsets.right
+        
+        let imageInsert = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+        let imageViewWidth = tableView.bounds.width - imageInsert.left - imageInsert.right
         let imageWidth = image.size.width
+        let imageHeight = image.size.height
         let scale = imageViewWidth / imageWidth
-        let cellHeight = image.size.height * scale + imageInsets.top + imageInsets.bottom
+        let cellHeight = imageHeight * scale + imageInsert.top + imageInsert.bottom
         return cellHeight
     }
     
@@ -138,18 +136,12 @@ extension ImagesListViewController: ImagesListCellDelegate {
         imagesListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { result in
             switch result {
             case .success:
-                // Синхронизируем массив картинок с сервисом
                 self.photosName = self.imagesListService.photos
-                // Изменим индикацию лайка картинки
                 cell.setIsLiked(entryValue: self.photosName[indexPath.row].isLiked)
-                // Уберём лоадер
                 UIBlockingProgressHUD.dismiss()
             case .failure:
                 self.showAlert()
-                // Уберём лоадер
                 UIBlockingProgressHUD.dismiss()
-                // Покажем, что что-то пошло не так
-                // TODO: Показать ошибку с использованием UIAlertController
             }
         }
     }
@@ -158,16 +150,17 @@ extension ImagesListViewController: ImagesListCellDelegate {
         let alertModel = AlertModel(
             title: "Что-то пошло не так(",
             message: "Не удалось лайкнуть",
-            buttonText: "ОК",
-            buttonAction: { [weak self] in
+            firstButtonText: "ОК",
+            secondButtonText: nil,
+            firstButtonAction: { [weak self] in
                 guard let self = self else {
                     return
                 }
-            }
+            },
+            secondButtonAction: nil
         )
         AlertPresenter.showAlert(alertModel: alertModel, delegate: self)
     }
-    
 }
 
 

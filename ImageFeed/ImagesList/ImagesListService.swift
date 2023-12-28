@@ -112,11 +112,17 @@ final class ImagesListService {
     private func decodedResult(_ photoResult: PhotoResult) -> Photo {
         return Photo.init(id: photoResult.id,
                           size: CGSize(width: photoResult.width ?? 0, height: photoResult.height ?? 0),
-                          createdAt: dateFormatter.date(from: photoResult.createdAt ?? ""),
+                          createdAt: ISO8601DateFormatter().date(from: photoResult.createdAt ?? ""),
                           welcomeDescription: photoResult.welcomeDescription,
                           thumbImageURL: photoResult.urls?.trumbImageURL,
                           largeImageURL: photoResult.urls?.largeImageURL,
                           isLiked: photoResult.isLiked ?? false)
+    }
+    
+    func clean() {
+        task = nil
+        photos = []
+        lastLoadedPage = nil
     }
     
 }

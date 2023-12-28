@@ -36,7 +36,7 @@
 		00A8BA7D2B3DB37600EE601C /* PhotoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8BA7C2B3DB37600EE601C /* PhotoResult.swift */; };
 		00A8BA7F2B3DB39700EE601C /* UrlsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8BA7E2B3DB39700EE601C /* UrlsResult.swift */; };
 		00A8BA812B3DB3BF00EE601C /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8BA802B3DB3BF00EE601C /* ImagesListService.swift */; };
-		00A8BA902B3DB49A00EE601C /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8BA8F2B3DB49A00EE601C /* DateFormatter.swift */; };
+		00A8BA902B3DB49A00EE601C /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8BA8F2B3DB49A00EE601C /* DateFormat.swift */; };
 		00A8BA922B3DDFD900EE601C /* LikeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8BA912B3DDFD900EE601C /* LikeResult.swift */; };
 		00B4A22E2B1F50C400C2E7A0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B4A22D2B1F50C400C2E7A0 /* Constants.swift */; };
 		00B4A2562B2CB3E400C2E7A0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B4A2552B2CB3E400C2E7A0 /* AuthViewController.swift */; };
@@ -79,7 +79,7 @@
 		00A8BA7C2B3DB37600EE601C /* PhotoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoResult.swift; sourceTree = "<group>"; };
 		00A8BA7E2B3DB39700EE601C /* UrlsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlsResult.swift; sourceTree = "<group>"; };
 		00A8BA802B3DB3BF00EE601C /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
-		00A8BA8F2B3DB49A00EE601C /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		00A8BA8F2B3DB49A00EE601C /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		00A8BA912B3DDFD900EE601C /* LikeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeResult.swift; sourceTree = "<group>"; };
 		00B4A22D2B1F50C400C2E7A0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		00B4A2552B2CB3E400C2E7A0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 				009F81AD2AC85FCF00FC30C2 /* UIColor+Extensions.swift */,
 				00A318732B387F6F002B501B /* URLSession + Extensions.swift */,
 				00A318752B38800C002B501B /* UIBlockingProgressHUD.swift */,
-				00A8BA8F2B3DB49A00EE601C /* DateFormatter.swift */,
+				00A8BA8F2B3DB49A00EE601C /* DateFormat.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -372,7 +372,7 @@
 				00A318922B39C2BA002B501B /* TabBarController.swift in Sources */,
 				00A318822B38D24B002B501B /* ProfileImageService.swift in Sources */,
 				00B4A2562B2CB3E400C2E7A0 /* AuthViewController.swift in Sources */,
-				00A8BA902B3DB49A00EE601C /* DateFormatter.swift in Sources */,
+				00A8BA902B3DB49A00EE601C /* DateFormat.swift in Sources */,
 				00B4A2642B2CF69100C2E7A0 /* OAuthTokenResponseBody.swift in Sources */,
 				00B4A22E2B1F50C400C2E7A0 /* Constants.swift in Sources */,
 				00B4A2622B2CE92D00C2E7A0 /* OAuth2TokenStorage.swift in Sources */,
