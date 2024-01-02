@@ -52,12 +52,12 @@ extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
-        guard let ImagesListCell = cell as? ImagesListCell else {
+        guard let imagesListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
-        ImagesListCell.delegate = self
-        configCell(for: ImagesListCell, with: indexPath)
-        return ImagesListCell
+        imagesListCell.delegate = self
+        configCell(for: imagesListCell, with: indexPath)
+        return imagesListCell
     }
 }
 
@@ -128,12 +128,11 @@ extension ImagesListViewController: UITableViewDelegate {
 extension ImagesListViewController: ImagesListCellDelegate {
     
     func imageListCellDidTapLike(_ cell: ImagesListCell) {
-        
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let photo = photosName[indexPath.row]
-        // Покажем лоадер
         UIBlockingProgressHUD.show()
-        imagesListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { result in
+        imagesListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success:
                 self.photosName = self.imagesListService.photos
@@ -152,11 +151,7 @@ extension ImagesListViewController: ImagesListCellDelegate {
             message: "Не удалось лайкнуть",
             firstButtonText: "ОК",
             secondButtonText: nil,
-            firstButtonAction: { [weak self] in
-                guard let self = self else {
-                    return
-                }
-            },
+            firstButtonAction: nil,
             secondButtonAction: nil
         )
         AlertPresenter.showAlert(alertModel: alertModel, delegate: self)
