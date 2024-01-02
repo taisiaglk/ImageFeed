@@ -79,7 +79,7 @@ extension ImagesListViewController {
             } else {
                 cell.dateLabel.text = ""
             }
-            let like = imagesListService.photos[indexPath.row].isLiked
+            let like = UserDefaults.standard.bool(forKey: imagesListService.photos[indexPath.row].id)
             cell.setIsLiked(entryValue: like)
         }
     }
@@ -129,14 +129,22 @@ extension ImagesListViewController: ImagesListCellDelegate {
     
     func imageListCellDidTapLike(_ cell: ImagesListCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let photo = photosName[indexPath.row]
+        var photo = photosName[indexPath.row]
+        
+        let newIsLiked = !photo.isLiked
+        
         UIBlockingProgressHUD.show()
-        imagesListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { [weak self] result in
+        
+        imagesListService.changeLike(photoId: photo.id, isLike: newIsLiked) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success:
-                self.photosName = self.imagesListService.photos
-                cell.setIsLiked(entryValue: self.photosName[indexPath.row].isLiked)
+                photo.isLiked = newIsLiked
+                self.photosName[indexPath.row] = photo
+                cell.setIsLiked(entryValue: newIsLiked)
+                
+                UserDefaults.standard.set(newIsLiked, forKey: photo.id)
+                
                 UIBlockingProgressHUD.dismiss()
             case .failure:
                 self.showAlert()
@@ -144,6 +152,7 @@ extension ImagesListViewController: ImagesListCellDelegate {
             }
         }
     }
+
     
     private func showAlert() {
         let alertModel = AlertModel(

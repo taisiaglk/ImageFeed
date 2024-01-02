@@ -10,7 +10,6 @@ import Foundation
 final class ImagesListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImageListServiceDidChange")
     static let shared = ImagesListService()
-    
     private init() {}
     private (set) var photos: [Photo] = []
     private var lastLoadedPage: Int?
@@ -54,6 +53,7 @@ final class ImagesListService {
         task.resume()
     }
     
+    // я не очень понимаю, почему оображение не работает, как в учебнике  поэтому сделала через userdefaults
     func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
         assert(Thread.isMainThread)
         task?.cancel()
@@ -83,6 +83,8 @@ final class ImagesListService {
                             photos.replaceSubrange(index...index, with: [newPhoto])
                             return photos
                         }()
+                        
+                        UserDefaults.standard.set(newPhoto.isLiked, forKey: newPhoto.id)
                     }
                     completion(.success(()))
                 case .failure(let error):
@@ -93,6 +95,7 @@ final class ImagesListService {
         self.task = task
         task.resume()
     }
+
     
     private func imageListRequest(_ token: String, page: String, perPage: String) -> URLRequest? {
         let url = URL(string: "https://api.unsplash.com/photos?page=\(page)&&per_page=\(perPage)")!
