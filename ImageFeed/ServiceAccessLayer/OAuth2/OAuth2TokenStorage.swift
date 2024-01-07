@@ -29,5 +29,9 @@ final class OAuth2TokenStorage {
             }
         }
     }
+    
+    func clean() {
+        keychain.removeAllKeys()
+    }
 }
 

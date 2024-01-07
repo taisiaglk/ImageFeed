@@ -40,4 +40,9 @@ final class ProfileService {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
     }
+    
+    func clean() {
+        profile = nil
+        task = nil
+    }
 }
