@@ -11,6 +11,7 @@ protocol ProfileViewControllerProtocol: AnyObject {
     func setNickName()
     func setDescription()
     func setLogOutButton()
+    func observeProfileImage()
     func updateProfileDetails()
     func showAlert()
 }
@@ -141,7 +142,16 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         profileDescription.text = profile.bio
     }
 
-    
+    func observeProfileImage() {
+        profileImageObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.DidChangeNotification,
+                object: nil,
+                queue: .main) { [weak self] _ in
+                    guard let self = self else { return }
+                    setAvatar()
+                }
+    }
     
     
     func goToSplashScreen() {

@@ -54,6 +54,8 @@
 		00E15A2D2B4C5B420009AF24 /* WebViewViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A2C2B4C5B420009AF24 /* WebViewViewControllerSpy.swift */; };
 		00E15A2F2B4C689B0009AF24 /* ProfileViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A2E2B4C689B0009AF24 /* ProfileViewPresenter.swift */; };
 		00E15A332B4C78860009AF24 /* ProfileViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A322B4C78860009AF24 /* ProfileViewTests.swift */; };
+		00E15A352B4C875B0009AF24 /* ProfileViewPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A342B4C875B0009AF24 /* ProfileViewPresenterSpy.swift */; };
+		00E15A372B4C8C6E0009AF24 /* ProfileViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A362B4C8C6E0009AF24 /* ProfileViewControllerSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,8 @@
 		00E15A2C2B4C5B420009AF24 /* WebViewViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewControllerSpy.swift; sourceTree = "<group>"; };
 		00E15A2E2B4C689B0009AF24 /* ProfileViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenter.swift; sourceTree = "<group>"; };
 		00E15A322B4C78860009AF24 /* ProfileViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTests.swift; sourceTree = "<group>"; };
+		00E15A342B4C875B0009AF24 /* ProfileViewPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenterSpy.swift; sourceTree = "<group>"; };
+		00E15A362B4C8C6E0009AF24 /* ProfileViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +326,8 @@
 			isa = PBXGroup;
 			children = (
 				00E15A322B4C78860009AF24 /* ProfileViewTests.swift */,
+				00E15A342B4C875B0009AF24 /* ProfileViewPresenterSpy.swift */,
+				00E15A362B4C8C6E0009AF24 /* ProfileViewControllerSpy.swift */,
 			);
 			path = ProfileTest;
 			sourceTree = "<group>";
@@ -482,9 +488,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E15A332B4C78860009AF24 /* ProfileViewTests.swift in Sources */,
+				00E15A352B4C875B0009AF24 /* ProfileViewPresenterSpy.swift in Sources */,
 				00E15A242B4C594C0009AF24 /* WebViewTests.swift in Sources */,
 				00E15A2D2B4C5B420009AF24 /* WebViewViewControllerSpy.swift in Sources */,
 				00E15A2B2B4C5A230009AF24 /* WebViewPresenterSpy.swift in Sources */,
+				00E15A372B4C8C6E0009AF24 /* ProfileViewControllerSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

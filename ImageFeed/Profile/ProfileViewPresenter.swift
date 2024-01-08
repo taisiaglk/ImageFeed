@@ -9,7 +9,6 @@ import Foundation
 
 protocol ProfileViewPresenterProtocol {
     var view: ProfileViewControllerProtocol? { get set }
-    func observeProfileImage()
     func getProfileImageURL() -> URL?
     func getProfileDetails() -> Profile?
     func cleanAndSwitchToSplashView()
@@ -38,19 +37,7 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
         view?.setLogOutButton()
         view?.updateProfileDetails()
         view?.setAvatar()
-        observeProfileImage()
-    }
-    
-    
-    func observeProfileImage() {
-        profileImageObserver = NotificationCenter.default
-            .addObserver(
-                forName: ProfileImageService.DidChangeNotification,
-                object: nil,
-                queue: .main) { [weak self] _ in
-                    guard let self = self else { return }
-                    view?.setAvatar()
-                }
+        view?.observeProfileImage()
     }
     
     
