@@ -7,12 +7,6 @@
 
 import Foundation
 
-
-
-
-
-import Foundation
-
 //let AccessKey = "7pRNur9oidnF-ge6-KWsu2yaXD5BND6JSMvQrl4cL5k"
 let AccessKey = "kDFo2bjs28JTtNgl9AdjCX9Z7Z_Swi8brL7yRV5QqDE"
 //let SecretKey = "ORbfwzNefLMr4JnC55PH-fqZ2-pe5ezngi4_rUMK_uk"
