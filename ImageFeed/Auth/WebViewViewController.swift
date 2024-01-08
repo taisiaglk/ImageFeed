@@ -36,7 +36,6 @@ final class WebViewViewController: UIViewController & WebViewViewControllerProto
         
         webView.navigationDelegate = self
         presenter?.viewDidLoad()
-        //updateProgress()
         
         estimatedProgressObservation = webView.observe(
             \.estimatedProgress,

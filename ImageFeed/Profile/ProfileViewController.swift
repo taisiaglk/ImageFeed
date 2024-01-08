@@ -2,7 +2,23 @@ import Foundation
 import UIKit
 import Kingfisher
 
-final class ProfileViewController: UIViewController {
+protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfileViewPresenterProtocol? { get set }
+    func goToSplashScreen()
+    func setAvatar()
+    func setProfileImage()
+    func setNamelabel()
+    func setNickName()
+    func setDescription()
+    func setLogOutButton()
+    func updateProfileDetails()
+    func showAlert()
+}
+
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+    
+    var presenter: ProfileViewPresenterProtocol?
+    
     
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
@@ -48,76 +64,8 @@ final class ProfileViewController: UIViewController {
         return logOutButton
     }()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setProfileImage()
-        setNamelabel()
-        setNickName()
-        setDescription()
-        setLogOutButton()
-        updateProfileDetails()
-        updateAvatar()
-        observeProfileImage()
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    private func setProfileImage() {
-        view.addSubview(profileImageView)
-        profileImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-    }
-    
-    private func setNamelabel() {
-        view.addSubview(nameLabel)
-        nameLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-    }
-    
-    private func setNickName() {
-        view.addSubview(nickLabel)
-        nickLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
-        nickLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
-        nickLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-    }
-    
-    private func setDescription() {
-        view.addSubview(profileDescription)
-        profileDescription.leadingAnchor.constraint(equalTo: nickLabel.leadingAnchor).isActive = true
-        profileDescription.topAnchor.constraint(equalTo: nickLabel.bottomAnchor, constant: 8).isActive = true
-        profileDescription.numberOfLines = 0
-        profileDescription.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-    }
-    
-    private func setLogOutButton() {
-        view.addSubview(logOutButton)
-        logOutButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        logOutButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        logOutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        logOutButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-        logOutButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
-        
-    }
-    
-    private func updateProfileDetails() {
-        guard let profile = profileService.profile else { return }
-        nameLabel.text = profile.name
-        nickLabel.text = profile.name
-        profileDescription.text = profile.bio
-    }
-    
-    private func updateAvatar() {
-        
-        guard let profileImageURL = profileImageService.avatarURL,
-              let url = URL(string: profileImageURL)
-        else { return }
+    func setAvatar() {
+        guard let url = presenter?.getProfileImageURL() else { return }
         let processor = RoundCornerImageProcessor(cornerRadius: 70, backgroundColor: .clear)
         profileImageView.kf.indicatorType = .activity
         profileImageView.kf.setImage(
@@ -131,31 +79,78 @@ final class ProfileViewController: UIViewController {
         cache.clearDiskCache()
     }
     
-    private func observeProfileImage() {
-        profileImageObserver = NotificationCenter.default
-            .addObserver(
-                forName: ProfileImageService.DidChangeNotification,
-                object: nil,
-                queue: .main) { [weak self] _ in
-                    guard let self = self else { return }
-                    self.updateAvatar()
-                }
+    override func viewDidLoad() {
+            super.viewDidLoad()
+        //presenter?.view = self
+        presenter = ProfileViewPresenter(view: self)
+        presenter?.viewDidLoad()
+        }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
+    func configure(_ presenter: ProfileViewPresenterProtocol) {
+        self.presenter = presenter
+    }
     
-    private func cleanAndSwitchToSplashView() {
-        WebViewViewController.clean()
-        profileImageService.clean()
-        profileService.clean()
-        imagesListService.clean()
-        token.clean()
+     func setProfileImage() {
+        view.addSubview(profileImageView)
+        profileImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+    }
+    
+      func setNamelabel() {
+        view.addSubview(nameLabel)
+        nameLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+    }
+    
+      func setNickName() {
+        view.addSubview(nickLabel)
+        nickLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
+        nickLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
+        nickLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+    }
+    
+      func setDescription() {
+        view.addSubview(profileDescription)
+        profileDescription.leadingAnchor.constraint(equalTo: nickLabel.leadingAnchor).isActive = true
+        profileDescription.topAnchor.constraint(equalTo: nickLabel.bottomAnchor, constant: 8).isActive = true
+        profileDescription.numberOfLines = 0
+        profileDescription.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+    }
+    
+      func setLogOutButton() {
+        view.addSubview(logOutButton)
+        logOutButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        logOutButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        logOutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        logOutButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
+        logOutButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         
+    }
+    
+      func updateProfileDetails() {
+        guard let profile = presenter?.getProfileDetails() else { return }
+        nameLabel.text = profile.name
+        nickLabel.text = profile.name
+        profileDescription.text = profile.bio
+    }
+
+    
+    
+    
+    func goToSplashScreen() {
         guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
         window.rootViewController = SplashViewController()
     }
     
     @objc
-    private func showAlert() {
+    func showAlert() {
         let alertModel = AlertModel(
             title: "Пока, пока!",
             message: "Уверены что хотите выйти?",
@@ -163,18 +158,12 @@ final class ProfileViewController: UIViewController {
             secondButtonText: "НЕТ",
             firstButtonAction: { [weak self] in
                 guard let self = self else { return }
-                self.cleanAndSwitchToSplashView()
+                presenter?.cleanAndSwitchToSplashView()
             },
-            secondButtonAction: { [weak self] in
-                guard let self = self else { return }
-            }
+            secondButtonAction: nil
         )
         AlertPresenter.showAlert(alertModel: alertModel, delegate: self)
     }
     
     
 }
-
-
-
-
