@@ -21,11 +21,11 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     var presenter: ProfileViewPresenterProtocol?
     
     
-    private let profileService = ProfileService.shared
-    private let profileImageService = ProfileImageService.shared
+//    private let profileService = ProfileService.shared
+//    private let profileImageService = ProfileImageService.shared
     private var profileImageObserver: NSObjectProtocol?
-    private let imagesListService = ImagesListService.shared
-    private let token = OAuth2TokenStorage()
+//    private let imagesListService = ImagesListService.shared
+//    private let token = OAuth2TokenStorage()
     
     private var nameLabel = {
         let nameLabel = UILabel()

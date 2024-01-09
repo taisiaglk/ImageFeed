@@ -84,7 +84,7 @@
         <scene sceneID="LGO-Bd-7QN">
             <objects>
                 <viewController title="Profile" id="V5o-7Q-alx" customClass="ProfileViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QkX-p8-Nrk">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="ProfileViewController" id="QkX-p8-Nrk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="frB-25-FSA"/>
