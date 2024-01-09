@@ -166,6 +166,3 @@ extension ImagesListViewController: ImagesListCellDelegate {
         AlertPresenter.showAlert(alertModel: alertModel, delegate: self)
     }
 }
-
-
-
