@@ -9,7 +9,7 @@
 import XCTest
 
 final class ProfileViewTests: XCTestCase {
-    //
+    
     func testViewControllerCallsViewDidLoad() {
         //given
         let viewController = ProfileViewController()
@@ -24,7 +24,23 @@ final class ProfileViewTests: XCTestCase {
         XCTAssertTrue(presenter.viewDidLoadCalled) //behaviour verification
     }
     
-
+    func testCleanCheck() {
+        //given
+        let token = OAuth2TokenStorage()
+        let viewController = ProfileViewController()
+        let presenter = ProfileViewPresenterSpy()
+        viewController.presenter = presenter
+        presenter.view = viewController
+        let checker = ProfileViewPresenter(view: viewController)
+        
+        //when
+        presenter.cleanAndSwitchToSplashView()
+        checker.cleanAndSwitchToSplashView()
+        
+        //then
+        XCTAssertEqual(token.token, nil)
+        XCTAssertTrue(presenter.logoutCheck)
+    }
     
     func testProfileDetails() {
         //given
