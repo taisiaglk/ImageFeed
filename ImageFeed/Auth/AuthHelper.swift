@@ -39,12 +39,12 @@ class AuthHelper: AuthHelperProtocol {
     }
 
     func authURL() -> URL {
-        var urlComponents = URLComponents(string: configuration.authURLString)!
+        var urlComponents = URLComponents(string: configuration.authURLString1)!
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: configuration.accessKey),
-            URLQueryItem(name: "redirect_uri", value: configuration.redirectURI),
+            URLQueryItem(name: "client_id", value: configuration.accessKey1),
+            URLQueryItem(name: "redirect_uri", value: configuration.redirectURI1),
             URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "scope", value: configuration.accessScope)
+            URLQueryItem(name: "scope", value: configuration.accessScope1)
         ]
         return urlComponents.url!
     }

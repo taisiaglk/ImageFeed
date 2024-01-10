@@ -20,12 +20,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     
     var presenter: ProfileViewPresenterProtocol?
     
-    
-//    private let profileService = ProfileService.shared
-//    private let profileImageService = ProfileImageService.shared
     private var profileImageObserver: NSObjectProtocol?
-//    private let imagesListService = ImagesListService.shared
-//    private let token = OAuth2TokenStorage()
     
     private var nameLabel = {
         let nameLabel = UILabel()
@@ -81,21 +76,17 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     }
     
     override func viewDidLoad() {
-            super.viewDidLoad()
-        //presenter?.view = self
-        presenter = ProfileViewPresenter(view: self)
+        super.viewDidLoad()
+        view.backgroundColor = .ypBlack
+        presenter?.view = self
         presenter?.viewDidLoad()
-        }
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    func configure(_ presenter: ProfileViewPresenterProtocol) {
-        self.presenter = presenter
-    }
-    
-     func setProfileImage() {
+    func setProfileImage() {
         view.addSubview(profileImageView)
         profileImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32).isActive = true
@@ -103,21 +94,21 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         profileImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }
     
-      func setNamelabel() {
+    func setNamelabel() {
         view.addSubview(nameLabel)
         nameLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
     }
     
-      func setNickName() {
+    func setNickName() {
         view.addSubview(nickLabel)
         nickLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
         nickLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
         nickLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
     }
     
-      func setDescription() {
+    func setDescription() {
         view.addSubview(profileDescription)
         profileDescription.leadingAnchor.constraint(equalTo: nickLabel.leadingAnchor).isActive = true
         profileDescription.topAnchor.constraint(equalTo: nickLabel.bottomAnchor, constant: 8).isActive = true
@@ -125,7 +116,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         profileDescription.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
     }
     
-      func setLogOutButton() {
+    func setLogOutButton() {
         view.addSubview(logOutButton)
         logOutButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
         logOutButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
@@ -135,13 +126,13 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         
     }
     
-      func updateProfileDetails() {
+    func updateProfileDetails() {
         guard let profile = presenter?.getProfileDetails() else { return }
         nameLabel.text = profile.name
         nickLabel.text = profile.name
         profileDescription.text = profile.bio
     }
-
+    
     func observeProfileImage() {
         profileImageObserver = NotificationCenter.default
             .addObserver(

@@ -16,8 +16,8 @@ protocol ProfileViewPresenterProtocol {
 }
 
 final class ProfileViewPresenter: ProfileViewPresenterProtocol {
-
-    var view: ProfileViewControllerProtocol?
+    
+    weak var view: ProfileViewControllerProtocol?
     
     private let token = OAuth2TokenStorage()
     private let profileService = ProfileService.shared
@@ -26,9 +26,9 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
     private var profileImageObserver: NSObjectProtocol?
     
     init(view: ProfileViewControllerProtocol) {
-            self.view = view
-        }
-        
+        self.view = view
+    }
+    
     func viewDidLoad() {
         view?.setProfileImage()
         view?.setNamelabel()
@@ -54,7 +54,7 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
     }
     
     func cleanAndSwitchToSplashView() {
-        WebViewViewController.clean()
+        OAuth2Service.clean()
         profileImageService.clean()
         profileService.clean()
         imagesListService.clean()

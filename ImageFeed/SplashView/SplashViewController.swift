@@ -17,6 +17,7 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        guard UIBlockingProgressHUD.isShowing == false else { return }
         if oauth2TokenStorage.token != nil {
             guard let token = oauth2TokenStorage.token else { return }
             fetchProfile(token: token)

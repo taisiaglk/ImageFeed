@@ -76,11 +76,11 @@ final class WebViewTests: XCTestCase {
         let urlString = url.absoluteString
         
         //then
-        XCTAssertTrue(urlString.contains(configuration.authURLString))
-        XCTAssertTrue(urlString.contains(configuration.accessKey))
-        XCTAssertTrue(urlString.contains(configuration.redirectURI))
+        XCTAssertTrue(urlString.contains(configuration.authURLString1))
+        XCTAssertTrue(urlString.contains(configuration.accessKey1))
+        XCTAssertTrue(urlString.contains(configuration.redirectURI1))
         XCTAssertTrue(urlString.contains("code"))
-        XCTAssertTrue(urlString.contains(configuration.accessScope))
+        XCTAssertTrue(urlString.contains(configuration.accessScope1))
     }
     
     func testCodeFromURL() {
