@@ -180,5 +180,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7691285D-EAA4-415F-8066-F48344E68292"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ImageFeed/ImagesList/ImagesListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7691285D-EAA4-415F-8066-F48344E68292 - c526ea15ca53dfd7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ImageFeed.ImagesListViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "ImageFeed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tasagalkina/Desktop/yandexTasks/ImageFeed/ImageFeed/ImagesList/ImagesListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "7691285D-EAA4-415F-8066-F48344E68292 - c526ea15ca53dfd7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ImageFeed.ImagesListViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "ImageFeed"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tasagalkina/Desktop/yandexTasks/ImageFeed/ImageFeed/ImagesList/ImagesListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

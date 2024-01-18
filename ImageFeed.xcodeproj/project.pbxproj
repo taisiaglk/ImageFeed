@@ -56,6 +56,7 @@
 		00E15A332B4C78860009AF24 /* ProfileViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A322B4C78860009AF24 /* ProfileViewTests.swift */; };
 		00E15A352B4C875B0009AF24 /* ProfileViewPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A342B4C875B0009AF24 /* ProfileViewPresenterSpy.swift */; };
 		00E15A372B4C8C6E0009AF24 /* ProfileViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A362B4C8C6E0009AF24 /* ProfileViewControllerSpy.swift */; };
+		00E15A392B4F04F40009AF24 /* ImagesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E15A382B4F04F40009AF24 /* ImagesListPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		00E15A322B4C78860009AF24 /* ProfileViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTests.swift; sourceTree = "<group>"; };
 		00E15A342B4C875B0009AF24 /* ProfileViewPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewPresenterSpy.swift; sourceTree = "<group>"; };
 		00E15A362B4C8C6E0009AF24 /* ProfileViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerSpy.swift; sourceTree = "<group>"; };
+		00E15A382B4F04F40009AF24 /* ImagesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				00998C0B2AB8F7B9009B6552 /* ImagesListViewController.swift */,
+				00E15A382B4F04F40009AF24 /* ImagesListPresenter.swift */,
 				00998C0C2AB8F7B9009B6552 /* ImagesListCell.swift */,
 				00A8BA802B3DB3BF00EE601C /* ImagesListService.swift */,
 			);
@@ -479,6 +482,7 @@
 				00E15A1C2B4C57AC0009AF24 /* AuthHelper.swift in Sources */,
 				00B4A22E2B1F50C400C2E7A0 /* AuthConfiguration.swift in Sources */,
 				00B4A2622B2CE92D00C2E7A0 /* OAuth2TokenStorage.swift in Sources */,
+				00E15A392B4F04F40009AF24 /* ImagesListPresenter.swift in Sources */,
 				00B4A25C2B2CE87D00C2E7A0 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

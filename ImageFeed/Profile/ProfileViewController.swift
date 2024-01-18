@@ -78,7 +78,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ypBlack
-        presenter?.view = self
+        //presenter?.view = self
         presenter?.viewDidLoad()
     }
     
@@ -166,5 +166,9 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         AlertPresenter.showAlert(alertModel: alertModel, delegate: self)
     }
     
+    func configure(_ presenter: ProfileViewPresenterProtocol) {
+        self.presenter = presenter
+        self.presenter?.view = self
+    }
     
 }
