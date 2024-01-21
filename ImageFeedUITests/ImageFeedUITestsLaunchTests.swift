@@ -38,7 +38,7 @@ class Image_FeedUITests: XCTestCase {
         passwordTextField.tap()
         sleep(5)
         passwordTextField.typeText("")
-
+        
         sleep(5)
         //webView.swipeUp()
         

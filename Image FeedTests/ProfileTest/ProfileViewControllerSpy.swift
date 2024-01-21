@@ -24,35 +24,35 @@ final class ProfileViewControllerSpy: ProfileViewControllerProtocol {
     }
     
     func setProfileImage() {
-         
+        
     }
     
     func setNamelabel() {
-         
+        
     }
     
     func setNickName() {
-         
+        
     }
     
     func setDescription() {
-         
+        
     }
     
     func setLogOutButton() {
-         
+        
     }
     
     func observeProfileImage() {
-         
+        
     }
     
     func updateProfileDetails() {
-         
+        
     }
     
     func showAlert() {
-         
+        
     }
     
 }

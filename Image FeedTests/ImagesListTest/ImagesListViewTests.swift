@@ -9,7 +9,7 @@ import XCTest
 @testable import ImageFeed
 
 final class ImagesListViewTests: XCTestCase {
-
+    
     func testViewControllerCallsViewDidLoad() {
         //given
         let viewController = ImagesListViewController()
@@ -57,6 +57,6 @@ final class ImagesListViewTests: XCTestCase {
         //then
         XCTAssertTrue(presenter.tableViewUpdateCheck)
     }
-
+    
 }
 

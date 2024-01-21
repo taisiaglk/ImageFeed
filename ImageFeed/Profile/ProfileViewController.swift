@@ -78,7 +78,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ypBlack
-        //presenter?.view = self
         presenter?.viewDidLoad()
     }
     

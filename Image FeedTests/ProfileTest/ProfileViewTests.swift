@@ -18,8 +18,8 @@ final class ProfileViewTests: XCTestCase {
         presenter.view = viewController
         
         //when
-            _ = viewController.view
-            
+        _ = viewController.view
+        
         //then
         XCTAssertTrue(presenter.viewDidLoadCalled) //behaviour verification
     }

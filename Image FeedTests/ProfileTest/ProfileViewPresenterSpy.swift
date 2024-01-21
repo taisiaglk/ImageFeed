@@ -27,8 +27,8 @@ final class ProfileViewPresenterSpy: ProfileViewPresenterProtocol {
     }
     
     func getProfileDetails() -> ImageFeed.Profile? {
-            let profile = profileData
-            return profile
+        let profile = profileData
+        return profile
     }
     
     func cleanAndSwitchToSplashView() {

@@ -32,7 +32,7 @@ final class ImagesListPresenterSpy: ImagesListViewPresenterProtocol {
     func viewDidLoad() {
         viewDidLoadCalled = true
     }
-
+    
     func changeLike(photoId: String, isLike: Bool, completion: @escaping (Result<Void, Error>) -> Void) {
         changeLikeCalled = true
     }

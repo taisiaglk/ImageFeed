@@ -69,7 +69,7 @@ class ImagesListViewController: UIViewController, ImagesListViewControllerProtoc
             }
             var like = UserDefaults.standard.bool(forKey: "0")
             if let photoId = presenter?.imagesListService.photos[indexPath.row].id {
-                 like = UserDefaults.standard.bool(forKey: photoId)
+                like = UserDefaults.standard.bool(forKey: photoId)
             }
             cell.setIsLiked(entryValue: like)
         }
