@@ -61,15 +61,12 @@ class Image_FeedUITests: XCTestCase {
         let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
         
         cellToLike.buttons["like button on"].tap()
-        //cellToLike.buttons["like button on"].tap()
+        cellToLike.buttons["like button on"].tap()
         
         sleep(2)
         
         cellToLike.tap()
         
-        sleep(2)
-        
-        cellToLike.tap()
         sleep(2)
         
         let image = app.scrollViews.images.element(boundBy: 0)
@@ -92,7 +89,7 @@ class Image_FeedUITests: XCTestCase {
         app.buttons["logout button"].tap()
         
         sleep(2)
-        app.alerts["Пока, пока!"].scrollViews.otherElements.buttons["Да"].tap()
+        app.alerts["Пока, пока!"].scrollViews.otherElements.buttons["ДА"].tap()
         
         sleep(3)
         XCTAssertTrue(app.buttons["Authenticate"].exists)
