@@ -45,7 +45,7 @@ class ImagesListService {
                             object: self,
                             userInfo: ["Photos": self.photos] )
                 case .failure(let error):
-                    assertionFailure("Failed to receive photo \(error)")
+                    print("Error fetching photos: \(error.localizedDescription)")
                 }
             }
         }

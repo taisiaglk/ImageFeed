@@ -123,13 +123,14 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         logOutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         logOutButton.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
         logOutButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+        logOutButton.accessibilityIdentifier = "logout button"
         
     }
     
     func updateProfileDetails() {
         guard let profile = presenter?.getProfileDetails() else { return }
         nameLabel.text = profile.name
-        nickLabel.text = profile.name
+        nickLabel.text = profile.loginName
         profileDescription.text = profile.bio
     }
     
