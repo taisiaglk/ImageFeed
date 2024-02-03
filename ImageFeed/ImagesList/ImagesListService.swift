@@ -7,10 +7,10 @@
 
 import Foundation
 
-final class ImagesListService {
+class ImagesListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImageListServiceDidChange")
     static let shared = ImagesListService()
-    private init() {}
+     init() {}
     private (set) var photos: [Photo] = []
     private var lastLoadedPage: Int?
     private let perPage = "10"
@@ -45,7 +45,7 @@ final class ImagesListService {
                             object: self,
                             userInfo: ["Photos": self.photos] )
                 case .failure(let error):
-                    assertionFailure("Failed to receive photo \(error)")
+                    print("Error fetching photos: \(error.localizedDescription)")
                 }
             }
         }
@@ -131,5 +131,3 @@ final class ImagesListService {
     }
     
 }
-
-
